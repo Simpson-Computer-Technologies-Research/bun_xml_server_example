@@ -10,7 +10,6 @@ export const defaults = {
       /*
       Instead of an object for xml, we can also use functions:
 
-      ```ts
       const root = create({ version: '1.0' })
         .ele('root', { att: 'val' })
           .ele('foo')
@@ -18,7 +17,6 @@ export const defaults = {
           .up()
           .ele('baz').up()
         .up();
-      ```
 
       However this is much more verbose and harder to read.
       */
