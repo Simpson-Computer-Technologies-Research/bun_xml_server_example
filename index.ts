@@ -10,7 +10,6 @@
  */
 import { create } from "xmlbuilder2";
 import { schemas } from "./lib/schemas";
-import { defaults } from "./lib/defaults";
 
 /**
  * This is the main entry point for the app
@@ -21,17 +20,24 @@ const server = Bun.serve({
   port: 3000,
   async fetch() {
     try {
-      // parse the default xml document
-      const parsed = schemas.http.xml.doc.parse(defaults.xml.doc);
+      const docObject = {
+        root: {
+          "@att": "val",
+          foo: {
+            bar: "foobar",
+          },
+          baz: {},
+        },
+      };
 
+      // parse the default xml document
+      const parsed = schemas.xml.doc.parse(docObject);
       if (!parsed) {
         throw new Error("Failed to parse the default xml document");
       }
 
       // create the xml document
-      const doc = create(parsed);
-
-      // convert the xml document to a string
+      const doc = create({ version: "1.0", encoding: "UTF-8" }).ele(parsed);
       const xmlString = doc.end({ prettyPrint: true });
 
       return new Response(xmlString, {

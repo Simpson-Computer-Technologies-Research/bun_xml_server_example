@@ -18,11 +18,8 @@ export interface XMLDocument extends XMLBuilderCreateOptions {
  * Zod schemas for this app
  */
 export const schemas = {
-  // schemas for http requests
-  http: {
-    // schema for xml http request
-    xml: {
-      doc: z.instanceof(Object) as z.ZodType<XMLDocument>,
-    },
+  // schemas for xml documents
+  xml: {
+    doc: z.instanceof(Object) as z.ZodType<XMLDocument>,
   },
 };
