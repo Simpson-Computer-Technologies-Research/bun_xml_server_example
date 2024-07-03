@@ -19,6 +19,10 @@ export const defaults = {
         .up();
 
       However this is much more verbose and harder to read.
+
+      How to use this exported object:
+
+      const root = create(xml.doc.root)
       */
       root: {
         "@att": "val",
